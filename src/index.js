@@ -1,11 +1,5 @@
-import { getProjectsArray, loadProject, createProject } from "./ProjectModule";
-class Todo{
-    constructor(task, description, priority){
-        this.task = task;
-        this.description = description;
-        this.priority = priority;
-    }
-}
+import { getProjectsArray, loadProject, createProject, deleteProject } from "./ProjectModule";
+
 
 var projects = getProjectsArray();
 loadProject();
