@@ -1,0 +1,12 @@
+{
+  "name": "entudo",
+  "version": "1.0.0",
+  "description": "A todo list application, where user can store todos and categorize them based on project",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "Ankush Patil",
+  "license": "ISC"
+}
