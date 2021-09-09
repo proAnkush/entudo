@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entudo - Todos made simple</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif+Caption&family=Rambla&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Entudo</h1>
+    <div id="content">
+        <div id="listPanel">
+            <h3 class="secondaryHeading">Your Project</h3>
+            <div id="projects">
+                <div class="project">Project 1</div>
+                <div class="project">Project 2</div>
+            </div>
+            <div id="input-project">
+                    <input id="formProjectName" class="inputText" name="project-name" type="text" placeholder="Add a new project">
+                    <button id="createProject" class="submits"> <i class="fas fa-plus-circle"></i>  Project</button>
+            </div>
+        </div>
+        <div id="contentPanel">
+            <h3 class="secondaryHeading" id="selectedProjectName" contenteditable">Demo Project</h3>
+            <div>
+                
+                <div id="input-todo">
+                    <input type="text" name="task" >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

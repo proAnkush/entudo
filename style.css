@@ -1,0 +1,78 @@
+h1 {
+  text-align: right;
+  padding-right: 20px;
+  color: brown;
+  font-size: 5vmin;
+  font-family: "PT Serif Caption";
+}
+body {
+  background-color: blanchedalmond;
+  font-family: Rambla;
+  font-size: 2.2vmin;
+}
+#content {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+#listPanel {
+  width: 25%;
+  text-align: center;
+}
+#contentPanel {
+  width: 75%;
+  text-align: center;
+}
+.secondaryHeading {
+  font-family: "PT Serif Caption";
+  font-size: 3.5vmin;
+}
+.project {
+  font-size: 3vmin;
+  font-weight: bold;
+  margin-bottom: 5%;
+  cursor: pointer;
+}
+.project:hover {
+  box-shadow: 0px 3px 3px rgba(150, 0, 0, 0.4);
+  text-shadow: 2px 0px gold;
+}
+#addProjectForm {
+  display: flex;
+  flex-direction: column;
+}
+.inputText {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 2vmin;
+  padding: 8px;
+  background-color: transparent;
+  color: black;
+}
+.inputText:focus {
+  transform: translateY(-3px);
+  box-shadow: 0px 0px 3px blue;
+}
+.inputText::placeholder {
+  color: black;
+}
+.submits {
+  background-color: transparent;
+  border: none;
+  font-size: 2vmin;
+  padding: 6px;
+
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+.submits:hover {
+  background-color: steelblue;
+  color: white;
+  border: 3px solid white;
+}
+.submits:active {
+  transform: translateY(3px);
+}
