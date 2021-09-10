@@ -24,8 +24,10 @@ class Todo{
     }
 }
 
-function createNewTask(name, description="", priority="low"){
+function createNewTask(name, description, priority){
     let tempTask = new Todo(name, description, priority);
     return tempTask;
 }
+
+export { createNewTask };
 

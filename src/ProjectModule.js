@@ -2,12 +2,17 @@
 class Project{
     constructor(project){
         this.projectName = project;
+        this.tasks = [];
+        this.index;
     }
     getName() {
         return this.projectName;
     }
     setName(newName){
         this.projectName = newName;
+    }
+    addTodo(t){
+        this.tasks.add(t);
     }
 }
 var projects = [];
@@ -54,10 +59,11 @@ function loadProject(){
 function createProjectCard(project, i){
     let p1 = document.createElement("div");
     p1.textContent = project.getName();
+    p1.setAttribute("data", i);
     p1.classList.add("project");
     p1.onclick = function(){
         console.log("onclick");
-        viewProject(project);
+        viewProject(project, i);
     };
     
     let tspan = document.createElement("span");
@@ -74,11 +80,15 @@ function createProjectCard(project, i){
 
     return p1;
 }
-function viewProject(project) {
+function viewProject(project, i) {
     // need to be improvised
     if(projects.indexOf(project) >= 0){
-        document.getElementById("selectedProjectName").textContent = project.getName();
+        let projSecHead = document.getElementById("selectedProjectName")
+        projSecHead.textContent = project.getName();
+        projSecHead.setAttribute("data", i)
     }
 }
+
+
 
 export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject};
