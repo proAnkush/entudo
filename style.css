@@ -51,6 +51,7 @@ body {
   padding: 8px;
   background-color: transparent;
   color: black;
+  width: 80%;
 }
 .inputText:focus {
   transform: translateY(-3px);
@@ -77,6 +78,7 @@ body {
 .submits:active {
   transform: translateY(3px);
 }
+
 .trash {
   text-align: right;
   margin: 0 10%;
@@ -88,7 +90,146 @@ body {
 .taskCard {
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
 }
 .taskTable:nth-child(even) {
-  background-color: aqua;
+  background-color: seashell;
+}
+.taskTable {
+  text-align: left;
+  margin-bottom: 6%;
+}
+.taskDesc {
+  opacity: 40%;
+}
+
+.taskFormButton {
+  background-image: linear-gradient(
+    to right,
+    #da22ff 0%,
+    #9733ee 51%,
+    #da22ff 100%
+  );
+}
+.taskFormButton {
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  border: none;
+  text-align: left;
+  width: 25%;
+  padding: 2vmin;
+  font-size: 2vmin;
+  opacity: 80%;
+}
+
+.taskFormButton:hover {
+  opacity: 100%;
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.fa-plus {
+  float: right;
+  color: gold;
+  font-size: 2.4vmin;
+}
+
+#input-todo {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  visibility: hidden;
+  position: fixed;
+  align-items: center;
+  justify-self: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.formPop {
+  flex-direction: column;
+  background-color: violet;
+  width: 60%;
+  height: 40%;
+  padding-top: 6%;
+}
+.formPop-item {
+  margin-bottom: 3%;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 14%;
+  border-radius: 50px;
+  padding-top: auto;
+  padding-bottom: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  font-size: 2.3vmin;
+}
+.formPop-btn {
+  flex-direction: row;
+  margin-bottom: 3%;
+  width: 20%;
+  height: 14%;
+  border-radius: 50px;
+  border: none;
+  font-size: 2.3vmin;
+}
+
+#cancelForm {
+  background-image: linear-gradient(
+    to right,
+    #283048 0%,
+    #859398 51%,
+    #283048 100%
+  );
+}
+#cancelForm {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 50px;
+}
+
+#cancelForm:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+#submitForm {
+  background-image: linear-gradient(
+    to right,
+    #da22ff 0%,
+    #9733ee 51%,
+    #da22ff 100%
+  );
+}
+#submitForm {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 50px;
+}
+
+#submitForm:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }

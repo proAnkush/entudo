@@ -25,11 +25,10 @@
         </div>
         <div id="contentPanel">
             <h3 class="secondaryHeading" id="selectedProjectName" contenteditable">Demo Project</h3>
-            <div>
                 <div class="taskCard">
                     <table class="taskTable">
                         <tr>
-                            <th class="taskName">Name</th>
+                            <th class="taskName">Lorem, ipsum.</th>
                             <th class="taskPriority">Low</th>
                         </tr>
                         <tr>
@@ -39,7 +38,7 @@
                     </table>
                     <table class="taskTable">
                         <tr>
-                            <th class="taskName">Name</th>
+                            <th class="taskName">Lorem, ipsum dolor.</th>
                             <th class="taskPriority">Low</th>
                         </tr>
                         <tr>
@@ -48,10 +47,20 @@
                         </tr>
                     </table>
                 </div>
-                <div id="input-todo">
-                    <input type="text" name="task" >
+                <button id="showTaskForm" class="taskFormButton" onclick="showTaskForm">Add A Task <span><i class="fa fa-plus" aria-hidden="true"></i></span> </button>
+                <div id="input-todo" >
+                    <div class="formPop">
+                        <input class="formPop-item" id="taskNameInput" type="text" name="task" placeholder="Task Name"><br>
+                        <input class="formPop-item" id="taskDescInput" type="text" name="desc" placeholder="(Optional) Give it a description"><br>
+                        <select id="priority" class="formPop-item" name="priority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select><br>
+                        <button class="formPop-btn" id="cancelForm" class="cancelFormBtn">Cancel</button>
+                        <button class="formPop-btn" id="submitForm" class="submitFormBtn">Submit</button>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 
