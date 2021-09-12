@@ -1,14 +1,13 @@
 import { getProjectsArray, loadProject, createProject, deleteProject, addTaskToProject } from "./ProjectModule";
-import { createNewTask } from "./TaskModule";
 
 // TODO - fix no name tasks
 // todo - delete task button
 // todo - the project name input box looks horrible
+// todo - clean the project
 
 // create project
 loadProject();
 document.getElementById("createProject").onclick = createProject;
-
 
 // add task
 document.getElementById("showTaskForm").onclick = showTaskForm;

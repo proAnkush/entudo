@@ -1,4 +1,5 @@
-import { createNewTask, createTaskTable } from "./TaskModule";
+import { createNewTask, createTaskTable, updateTaskIndexes, loadTasks } from "./TaskModule";
+
 class Project{
     constructor(project, index){
         this.projectName = project;
@@ -16,14 +17,33 @@ class Project{
     }
 }
 var projects = [];
-projects.push(new Project("Pro1", projects.length));
+function getProjectByIndex(i) {
+    if(i >= 0 && i < projects.length){
+        return projects[i];
+    }
+}
+
+addSampleProject();
+function addSampleProject(){
+    let sampleProject = new Project("Sample Project 1", 0);
+    projects.push(sampleProject);
+    addTaskToProject("Sample Task 1", "This is a short and sweet description for the task", "low", 0);
+    addTaskToProject("Sample Task 2", "This is a short and sweet description for the task", "medium", 0);
+    addTaskToProject("Sample Task 3", "Description is optional", "high", 0);
+    addTaskToProject("Sample Task 4", "", "Priority", 0);
+}
 projects.push(new Project("Pro2", projects.length));
 projects.push(new Project("Pro3", projects.length));
+
 function getProjectsArray() {
     return projects;
 }
 
 function createProject(){
+    // duh,
+    // duh,
+    // duh
+    // j.k, this creates a project, stores it in the projects array, and load's it to the side pane. pretty efficients
     let projects = getProjectsArray();
     let projectNameInput = document.getElementById("formProjectName");
     if(projectNameInput.value == ""){
@@ -38,12 +58,14 @@ function createProject(){
 }
 
 function deleteProject(index){
+    // duh, goodby my project
     projects.splice(index, 1);
     updateIndexes();
     loadProject();
 }
 
 function updateIndexes(){
+    // update indexes of every project in projects array, these indexes are used to reference  the project when deleting them
     let i = 0;
     for( let p of projects){
         p.index = i;
@@ -52,6 +74,7 @@ function updateIndexes(){
 }
 
 function loadProject(){
+    // when a project in the sidepane is clicked, it should be expanded and its tasks should be visible there
     let projectsList = document.getElementById("projects");
     if(projects.length == 0){
         document.getElementById("selectedProjectName").textContent = "No Project";
@@ -68,10 +91,12 @@ function loadProject(){
 }
 
 function createProjectCard(project, i){
+    // create an interactive project button/card in the project selection sidepane in html
     let p1 = document.createElement("div");
     p1.textContent = project.getName();
     p1.setAttribute("data", i);
     p1.classList.add("project");
+
     p1.onclick = function(){
         viewProject(project, project.index);
     };
@@ -91,7 +116,12 @@ function createProjectCard(project, i){
     return p1;
 }
 function viewProject(project, i) {
-    // need to be improvised
+    if(project == null || project == undefined){
+        project = getProjectByIndex(i);
+    }
+    if(i == null || i == undefined){
+        i = projects.indexOf(project);
+    }
     if(projects.length > 0 && projects[i] == project){
         // change the heading for the task section
         let projSecHead = document.getElementById("selectedProjectName")
@@ -100,18 +130,10 @@ function viewProject(project, i) {
         addTaskButton.setAttribute("data", i);
         projSecHead.textContent = project.getName();
         projSecHead.setAttribute("data", i)
-
-        let taskCard = document.getElementById("taskSection");
-        taskCard.innerHTML = "";
-        for(let t of project.tasks){
-            console.log("task in for of loop", t);
-            let taskTable = createTaskTable(t);
-            taskCard.appendChild(taskTable);
-        }
-
+        loadTasks(project);
     }
+    
 }
-
 
 
 function addTaskToProject(tName, tDesc, tPri, projI){
@@ -129,5 +151,4 @@ function addTaskToProject(tName, tDesc, tPri, projI){
 }
 
 
-
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject};
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks};

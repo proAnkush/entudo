@@ -1,15 +1,44 @@
+#headingSection {
+  background-color: #da22ff;
+  top: 0;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+.done {
+  text-decoration: line-through;
+  opacity: 45%;
+}
+.fa-calendar-times {
+  float: right;
+  margin-right: 3vmin;
+}
+.fa-calendar-times:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
 h1 {
   text-align: right;
-  padding-right: 20px;
+  margin-top: 0;
+  padding-right: 30px;
   color: brown;
   font-size: 5vmin;
   font-family: "PT Serif Caption";
-  text-shadow: 0px 2px 1px black;
+  text-shadow: 2px 2px 1px white;
+  margin-bottom: 0;
+}
+.subheading {
+  text-align: right;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  color: white;
+  margin-top: 0;
 }
 body {
   background-color: blanchedalmond;
   font-family: Rambla;
   font-size: 2.2vmin;
+  margin: 0;
 }
 #content {
   display: flex;
@@ -20,7 +49,10 @@ body {
 }
 #listPanel {
   width: 25%;
+  height: 850px;
   text-align: center;
+  border-top: 5px solid red;
+  /* background-color: aquamarine; */
 }
 #contentPanel {
   width: 75%;
@@ -30,15 +62,41 @@ body {
   font-family: "PT Serif Caption";
   font-size: 3.5vmin;
 }
+
 .project {
-  font-size: 3vmin;
-  font-weight: bold;
-  margin-bottom: 5%;
-  cursor: pointer;
-  width: 70%;
+  background-image: linear-gradient(
+    to right,
+    #da22ff 0%,
+    #9733ee 51%,
+    #da22ff 100%
+  );
 }
+.project {
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  border: none;
+  text-align: left;
+  width: 80%;
+  padding: 2vmin;
+  font-size: 2vmin;
+  opacity: 80%;
+  cursor: pointer;
+  margin: 3% auto;
+}
+
 .project:hover {
-  box-shadow: 0px 3px 3px rgba(150, 0, 0, 0.4);
+  opacity: 100%;
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.taskName {
+  font-size: 1.2em;
 }
 #addProjectForm {
   display: flex;
@@ -48,10 +106,12 @@ body {
   margin-top: 30px;
   margin-bottom: 10px;
   font-size: 2vmin;
-  padding: 8px;
+  padding: 8px 20px;
   background-color: transparent;
   color: black;
   width: 80%;
+  border: none;
+  border-radius: 30px;
 }
 .inputText:focus {
   transform: translateY(-3px);
@@ -65,7 +125,7 @@ body {
   border: none;
   font-size: 2vmin;
   padding: 6px;
-
+  cursor: pointer;
   width: 70%;
   margin: 0 auto;
   border-radius: 50px;
@@ -82,10 +142,12 @@ body {
 .trash {
   text-align: right;
   margin: 0 10%;
-  color: black;
+  color: gold;
 }
-.trash:hover {
-  color: red;
+.trash:hover i {
+  color: rgb(255, 255, 0);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
 }
 .taskCard {
   display: flex;
@@ -125,6 +187,7 @@ body {
   padding: 2vmin;
   font-size: 2vmin;
   opacity: 80%;
+  cursor: pointer;
 }
 
 .taskFormButton:hover {
@@ -139,7 +202,14 @@ body {
   color: gold;
   font-size: 2.4vmin;
 }
-
+.fa-trash-alt {
+  float: right;
+}
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+}
 #input-todo {
   width: 100%;
   height: 100%;
@@ -157,10 +227,11 @@ body {
 }
 .formPop {
   flex-direction: column;
-  background-color: violet;
+  background-color: blanchedalmond;
   width: 60%;
-  height: 40%;
-  padding-top: 6%;
+  height: 50%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 .formPop-item {
   margin-bottom: 3%;
@@ -203,6 +274,9 @@ body {
   box-shadow: 0 0 20px #eee;
   border-radius: 50px;
 }
+.taskPriority::first-letter {
+  text-transform: capitalize;
+}
 
 #cancelForm:hover {
   background-position: right center; /* change the direction of the change here */
@@ -232,4 +306,31 @@ body {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+.low {
+  background-color: yellow;
+}
+.medium {
+  background-color: green;
+  color: white;
+}
+.high {
+  background-color: red;
+  color: white;
+}
+.taskTable {
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+th {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
