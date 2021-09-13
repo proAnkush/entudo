@@ -150,5 +150,12 @@ function addTaskToProject(tName, tDesc, tPri, projI){
     return;
 }
 
+function checkProjectComplete(){
+    let p = projects[document.getElementById("selectedProjectName").getAttribute("data")];
+    for(let t of p.tasks){
+        if(t.done == false) return false;
+    }
+    return true;
+}
 
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks};
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete};

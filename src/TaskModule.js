@@ -1,4 +1,4 @@
-import {getProjectByIndex, getProjectsArray, loadProject, viewProject} from "./ProjectModule";
+import {getProjectByIndex, getProjectsArray, loadProject, viewProject, checkProjectComplete } from "./ProjectModule";
 class Todo{
     constructor(task, description, priority, index){
         this.task = task;
@@ -6,6 +6,7 @@ class Todo{
         this.priority = priority;
         // index of this task in project's task array
         this.index = index;
+        this.done = false;
     }
     getTaskName(){
         return this.task;
@@ -44,10 +45,12 @@ function createTaskTable(t){
     th1.classList.add("taskName");
     th2.classList.add("taskPriority");
     
+    
     th1.innerHTML = t.getTaskName() + `<i class="far fa-calendar-times"></i>`;
     let deleteTaskIcon = th1.lastChild;
     deleteTaskIcon.setAttribute("data", t.index);
     deleteTaskIcon.addEventListener("click", function () {
+        event.stopPropagation();
         deleteTask(t.index);
     })
 
@@ -69,7 +72,7 @@ function createTaskTable(t){
     td2.classList.add("date");
     td1.textContent = t.getDesc();
     td2.textContent = "1/2/abc";
-
+    taskDoneLoad(th1);
     trd.appendChild(td1);
     trd.appendChild(td2);
     table.appendChild(trh);
@@ -78,8 +81,27 @@ function createTaskTable(t){
     return table;
 }
 
+function taskDoneLoad(th1){
+    let tempProject = getProjectByIndex(document.getElementById("selectedProjectName").getAttribute("data"));
+    let task = tempProject.tasks[th1.lastChild.getAttribute("data")];
+    if(task.done){
+        th1.classList.add("done");
+    }else{
+        th1.classList.remove("done")
+    }
+}
+
 function taskDone(){
-    this.classList.toggle("done");
+    let tempProject = getProjectByIndex(document.getElementById("selectedProjectName").getAttribute("data"));
+    let task = tempProject.tasks[this.lastChild.getAttribute("data")];
+    console.log(task);
+    task.done = !task.done;
+    if(task.done == true){
+        this.classList.add("done");
+    }else{
+        this.classList.remove("done");
+    }
+    console.log(task);
 }
 
 function deleteTask(i){

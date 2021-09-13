@@ -3,7 +3,8 @@ import { getProjectsArray, loadProject, createProject, deleteProject, addTaskToP
 // TODO - fix no name tasks
 // todo - delete task button
 // todo - the project name input box looks horrible
-// todo - clean the project
+// todo - clean the project 
+// todo - close the create project wizard with esc key
 
 // create project
 loadProject();
