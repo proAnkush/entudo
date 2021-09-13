@@ -1,10 +1,9 @@
-import { getProjectsArray, loadProject, createProject, deleteProject, addTaskToProject } from "./ProjectModule";
+import { loadProject, createProject, addTaskToProject, isValidTaskName } from "./ProjectModule";
 
-// TODO - fix no name tasks
-// todo - delete task button
-// todo - the project name input box looks horrible
 // todo - clean the project 
-// todo - close the create project wizard with esc key
+// todo - get task sorted
+// todo - store projects in local storage
+// todo - renamable projects (add a pen icon next to #selectedProjectName, which when clicked prompts user for new name)
 
 // create project
 loadProject();
@@ -35,11 +34,16 @@ function submitForm(){
     let tPri = taskPriorityInput.value;
     let projI = this.getAttribute("data");
     // create a task with theses values
-    addTaskToProject(tName, tDesc, tPri, projI);
-    // reset input elements
-    clearForms();
-    // process the task and hide the form
-    hideForm();
+    if(isValidTaskName(tName, projI)){
+        addTaskToProject(tName, tDesc, tPri, projI);
+        // reset input elements
+        clearForms();
+        // process the task and hide the form
+        hideForm();
+    }else{
+        alert("Task name should be unique, non-empty, should have less than 25 characters and optionally amazing.")
+    }
+
 }
 
 function clearForms(){

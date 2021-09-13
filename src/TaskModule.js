@@ -1,4 +1,4 @@
-import {getProjectByIndex, getProjectsArray, loadProject, viewProject, checkProjectComplete } from "./ProjectModule";
+import {checkProjectComplete, getProjectByIndex, getProjectsArray, viewProject } from "./ProjectModule";
 class Todo{
     constructor(task, description, priority, index){
         this.task = task;
@@ -94,14 +94,39 @@ function taskDoneLoad(th1){
 function taskDone(){
     let tempProject = getProjectByIndex(document.getElementById("selectedProjectName").getAttribute("data"));
     let task = tempProject.tasks[this.lastChild.getAttribute("data")];
-    console.log(task);
     task.done = !task.done;
     if(task.done == true){
         this.classList.add("done");
+        if(checkProjectComplete()){
+            
+            if(document.getElementById("taskSection").lastChild.getAttribute("id") != "complete"){
+                document.getElementById("taskSection").appendChild(everyTaskCompleteDiv());
+            }
+        }
     }else{
         this.classList.remove("done");
+        if(!checkProjectComplete()){
+            console.log(document.getElementById("taskSection").lastChild);
+            if(document.getElementById("taskSection").lastChild.getAttribute("id") == "complete"){
+                document.getElementById("taskSection").lastChild.remove();
+            }
+        }
+
     }
-    console.log(task);
+}
+
+function everyTaskCompleteDiv(){
+    let completeDiv = document.createElement("div");
+    completeDiv.setAttribute("id", "complete");
+    let i = document.createElement("i");
+    i.classList.add("fas");
+    i.classList.add("fa-mug-hot");
+    i.style.fontSize = "2em";
+    completeDiv.appendChild(i);
+    let text = document.createElement("p");
+    text.textContent = "Looks like you completed all the pending tasks, Delete the tasks to keep everything clean";
+    completeDiv.appendChild(text);
+    return completeDiv;
 }
 
 function deleteTask(i){
@@ -112,6 +137,18 @@ function deleteTask(i){
         project.tasks.splice(taskIndex, 1);
     }
     loadTasks(project);
+    if(project.tasks.length >= 1){
+        if(checkProjectComplete()){
+            
+            if(document.getElementById("taskSection").lastChild.getAttribute("id") != "complete"){
+                document.getElementById("taskSection").appendChild(everyTaskCompleteDiv());
+            }
+        }else{
+            if(document.getElementById("taskSection").lastChild.getAttribute("id") == "complete"){
+                document.getElementById("taskSection").lastChild.remove();
+            }
+        }
+    }
 }
 
 function updateTaskIndexes(project) {

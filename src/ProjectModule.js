@@ -1,4 +1,4 @@
-import { createNewTask, createTaskTable, updateTaskIndexes, loadTasks } from "./TaskModule";
+import { createNewTask, loadTasks } from "./TaskModule";
 
 class Project{
     constructor(project, index){
@@ -157,5 +157,19 @@ function checkProjectComplete(){
     }
     return true;
 }
+function isValidTaskName(tName, projI){
+    let project = getProjectByIndex(projI);
+    if(tName == "") return false;
+    else if(tName.length > 25) return false;
+    else if(tName == null || tName == undefined) return false;
+    else{
+        for(let t of project.tasks){
+            if(t.getTaskName() == tName){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete};
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName};
