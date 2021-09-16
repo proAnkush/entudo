@@ -16,6 +16,10 @@ class Project{
         this.tasks.add(t);
     }
 }
+
+var pSortStatus = "none"; 
+// {aa = alpha ascending}, {ad = alpha descending}, {na = numeric ascending}, {nd = numeric descending}, {none = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+
 var projects = [];
 function getProjectByIndex(i) {
     if(i >= 0 && i < projects.length){
@@ -53,15 +57,25 @@ function createProject(){
         viewProject(tempProject);
         projectNameInput.value = "";
         projects.push(tempProject);
-        loadProject(projects)
+        sortProByCode(pSortStatus);
+        loadProject(projects);
     }
 }
 
 function deleteProject(index){
     // duh, goodby my project
     projects.splice(index, 1);
-    updateIndexes();
+    if(projects.length == 0){
+        noProjectsYet();
+    }else{
+        updateIndexes();
+    }
     loadProject();
+}
+
+function noProjectsYet(){
+    document.getElementById("selectedProjectName").textContent = "Uh oh, No projects available";
+    document.getElementById("taskSection").innerHTML = "";
 }
 
 function updateIndexes(){
@@ -74,9 +88,9 @@ function updateIndexes(){
 }
 
 function loadProject(){
-    // when a project in the sidepane is clicked, it should be expanded and its tasks should be visible there
+    // when a project is created it should be appended to the projects
     let projectsList = document.getElementById("projects");
-    if(projects.length == 0){
+    if(projectsList.length == 0){
         document.getElementById("selectedProjectName").textContent = "No Project";
     }else{
         viewProject(projects[0], 0);
@@ -145,6 +159,9 @@ function addTaskToProject(tName, tDesc, tPri, projI){
     let myTask = createNewTask(tName, tDesc, tPri, tI);
     // push this task to the project's task list
     p.tasks.push(myTask);
+    if(pSortStatus == "na" || pSortStatus == "nd"){
+        sortProByCode(pSortStatus);
+    }
     // load the tasks section for the new task to be visible
     viewProject(p, projI);
     return;
@@ -172,4 +189,74 @@ function isValidTaskName(tName, projI){
     return true;
 }
 
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName};
+function sortProByCode(code){
+    if(code == "aa"){
+        pSortStatus = "none";
+        pSortAlpAsc();
+    }else if(code == "ad"){
+        pSortStatus = "none";
+        pSortAlpDes();
+    }else if(code == "na"){
+        pSortStatus = "none";
+        pSortNumAsc();
+    }else if(code == "nd"){
+        pSortStatus = "none";
+        pSortNumDes();
+    }else{
+
+        console.log("Unexpected code received");
+    }
+}
+function pSortAlpAsc() {
+    // points.sort(function(a, b){return b - a});
+    if(pSortStatus == "ad"){
+        projects.reverse();
+    }
+    else{
+        projects.sort(function (a, b) {
+            let y = a.getName().toLowerCase();
+            let z = b.getName().toLowerCase();
+            if(y < z) return -1;
+            else if(y > z) return 1;
+            else return 0;
+        });
+    }
+    pSortStatus = "aa";
+    loadProject();
+    
+}
+function pSortAlpDes() {
+    if(pSortStatus == "aa"){
+        projects.reverse();
+    }else{
+        projects.sort(function (a, b) {
+            let y = a.getName().toLowerCase();
+            let z = b.getName().toLowerCase();
+            if(y > z) return -1;
+            else if(y < z) return 1;
+            else return 0;
+        });
+    }
+    pSortStatus = "ad";
+    loadProject();
+}
+function pSortNumAsc() {
+    if(pSortStatus == "nd"){
+        projects.reverse();
+    }else{
+        projects.sort(function(a, b){ return a.tasks.length - b.tasks.length });
+    }
+    pSortStatus = "na";
+    loadProject();
+}
+function pSortNumDes() {
+    if(pSortStatus == "na"){
+        projects.reverse();
+    }else{
+        projects.sort(function(a, b){ return b.tasks.length - a.tasks.length });
+    }
+    pSortStatus = "nd";
+    loadProject();
+}
+
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes};

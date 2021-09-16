@@ -1,9 +1,10 @@
-import { loadProject, createProject, addTaskToProject, isValidTaskName } from "./ProjectModule";
+import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes } from "./ProjectModule";
 
 // todo - clean the project 
 // todo - get task sorted
 // todo - store projects in local storage
 // todo - renamable projects (add a pen icon next to #selectedProjectName, which when clicked prompts user for new name)
+// 
 
 // create project
 loadProject();
@@ -13,6 +14,13 @@ document.getElementById("createProject").onclick = createProject;
 document.getElementById("showTaskForm").onclick = showTaskForm;
 document.getElementById("cancelForm").onclick = hideForm;
 document.getElementById("submitForm").onclick = submitForm;
+
+// sort project buttons 
+document.getElementById("p-sort-alpha-down").onclick = pSortAlpAsc;
+document.getElementById("p-sort-alpha-up").onclick = pSortAlpDes;
+document.getElementById("p-sort-num-down").onclick = pSortNumAsc;
+document.getElementById("p-sort-num-up").onclick = pSortNumDes;
+
 
 // show form
 function showTaskForm() {
