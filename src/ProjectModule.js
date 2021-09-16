@@ -222,6 +222,7 @@ function pSortAlpAsc() {
         });
     }
     pSortStatus = "aa";
+    updateIndexes();
     loadProject();
     
 }
@@ -238,6 +239,8 @@ function pSortAlpDes() {
         });
     }
     pSortStatus = "ad";
+    updateIndexes();
+
     loadProject();
 }
 function pSortNumAsc() {
@@ -247,6 +250,8 @@ function pSortNumAsc() {
         projects.sort(function(a, b){ return a.tasks.length - b.tasks.length });
     }
     pSortStatus = "na";
+    updateIndexes();
+
     loadProject();
 }
 function pSortNumDes() {
@@ -256,6 +261,8 @@ function pSortNumDes() {
         projects.sort(function(a, b){ return b.tasks.length - a.tasks.length });
     }
     pSortStatus = "nd";
+    updateIndexes();
+
     loadProject();
 }
 
