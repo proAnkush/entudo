@@ -29,40 +29,22 @@
                 <!-- most number of tasks first -->
                 <button class="sortBtn" id="p-sort-num-up"><i class="fas fa-sort-numeric-up"></i></button>
             </div>
-            <hr style="color: transparent; border: red;">
             <div id="projects">
-                <div class="project">Project 1 <span class="trash"><i class="fas fa-trash-alt"></i></span> </div>
-                <div class="project">Project 2 <span class="trash"><i class="fas fa-trash-alt"></i></span></div>
+                <!-- projects will be added here -->
             </div>
             <div id="input-project">
+                <!-- create new project input area -->
                     <input id="formProjectName" class="inputText" name="project-name" type="text" placeholder="Add a new project">
                     <button id="createProject" class="submits"> <i class="fas fa-plus-circle"></i>  Project</button>
             </div>
         </div>
         <div id="contentPanel">
-            <h3 class="secondaryHeading" id="selectedProjectName" contenteditable">Demo Project</h3>
+            <h3 class="secondaryHeading" id="selectedProjectName">No project selected</h3>
                 <div class="taskCard" id="taskSection">
-                    <table class="taskTable">
-                        <tr>
-                            <th class="taskName">Lorem, ipsum.</th>
-                            <th class="taskPriority">Low</th>
-                        </tr>
-                        <tr>
-                            <td class="taskDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, laudantium.</td>
-                            <td class="date">1/2/3</td>
-                        </tr>
-                    </table>
-                    <table class="taskTable">
-                        <tr>
-                            <th class="taskName">Lorem, ipsum dolor.</th>
-                            <th class="taskPriority">Low</th>
-                        </tr>
-                        <tr>
-                            <td class="taskDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, laudantium.</td>
-                            <td class="date">1/2/3</td>
-                        </tr>
-                    </table>
+                    
                 </div>
+
+
                 <button id="showTaskForm" class="taskFormButton" onclick="showTaskForm">Add A Task <span><i class="fa fa-plus" aria-hidden="true"></i></span> </button>
                 <div id="input-todo" >
                     <div class="formPop">
