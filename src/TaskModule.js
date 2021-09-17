@@ -8,24 +8,6 @@ class Todo{
         this.index = index;
         this.done = false;
     }
-    getTaskName(){
-        return this.task;
-    }
-    getDesc(){
-        return this.description;
-    }
-    getPriority(){
-        return this.priority;
-    }
-    setTaskName(newName){
-        this.task = newName;
-    }
-    setDesc(newDesc){
-        this.description = newDesc;
-    }
-    setPriority(newPrior){
-        this.priority = newPrior;
-    }
 }
 
 function createNewTask(name, description, priority, index){
@@ -46,7 +28,7 @@ function createTaskTable(t){
     th2.classList.add("taskPriority");
     
     
-    th1.innerHTML = t.getTaskName() + `<i class="far fa-calendar-times"></i>`;
+    th1.innerHTML = t.task + `<i class="far fa-calendar-times"></i>`;
     let deleteTaskIcon = th1.lastChild;
     deleteTaskIcon.setAttribute("data", t.index);
     deleteTaskIcon.addEventListener("click", function () {
@@ -54,8 +36,8 @@ function createTaskTable(t){
         deleteTask(t.index);
     })
 
-    th2.textContent = t.getPriority();
-    th2.classList.add(t.getPriority());
+    th2.textContent = t.priority;
+    th2.classList.add(t.priority);
     th2.onclick = function(){
         changePriority(t);
     }
@@ -70,7 +52,7 @@ function createTaskTable(t){
     let td2 = document.createElement("td");
     td1.classList.add("taskDesc");
     td2.classList.add("date");
-    td1.textContent = t.getDesc();
+    td1.textContent = t.description;
     td2.textContent = "1/2/abc";
     taskDoneLoad(th1);
     trd.appendChild(td1);
@@ -106,13 +88,12 @@ function taskDone(){
     }else{
         this.classList.remove("done");
         if(!checkProjectComplete()){
-            console.log(document.getElementById("taskSection").lastChild);
             if(document.getElementById("taskSection").lastChild.getAttribute("id") == "complete"){
                 document.getElementById("taskSection").lastChild.remove();
             }
         }
-
     }
+    localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
 }
 
 function everyTaskCompleteDiv(){
@@ -149,6 +130,8 @@ function deleteTask(i){
             }
         }
     }
+    localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
+
 }
 
 function updateTaskIndexes(project) {
@@ -157,6 +140,7 @@ function updateTaskIndexes(project) {
         t.index = i;
         i++;
     }
+    localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
 }
 
 function noTasks(){
@@ -180,6 +164,7 @@ function loadTasks(project){
             taskCard.appendChild(taskTable);
         }
     }
+    localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
 }
 
 function changePriority(task) {
@@ -195,6 +180,7 @@ function changePriority(task) {
     }
     let projectId = document.getElementById("selectedProjectName").getAttribute("data");
     viewProject(getProjectsArray()[projectId], projectId);
+    localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
     
 }
 
