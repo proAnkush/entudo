@@ -1,4 +1,5 @@
 import { createNewTask, loadTasks } from "./TaskModule";
+import { format, compareAsc } from 'date-fns'
 
 class Project{
     constructor(project, index){

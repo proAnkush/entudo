@@ -8,5 +8,8 @@
     "build": "webpack"
   },
   "author": "Ankush Patil",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.24.0"
+  }
 }

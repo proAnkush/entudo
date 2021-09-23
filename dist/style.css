@@ -24,7 +24,7 @@ h1 {
   color: brown;
   font-size: 5vmin;
   font-family: "PT Serif Caption";
-  text-shadow: 2px 2px 1px white;
+  text-shadow: 1px 1px 1px white;
   margin-bottom: 0;
 }
 .subheading {
@@ -226,15 +226,19 @@ select:focus {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .formPop {
+  border-top: calc(1vmax + 0.8vw) solid #da22ff;
+  width: 50%;
+  min-width: fit-content;
   flex-direction: column;
   background-color: blanchedalmond;
-  width: 60%;
   height: 50%;
-  padding-top: 3%;
   padding-bottom: 3%;
+  min-width: 35%;
+  max-height: fit-content;
 }
 .formPop-item {
   margin-bottom: 3%;
+  min-width: max-content;
   width: 40%;
   margin-left: auto;
   margin-right: auto;
@@ -245,7 +249,16 @@ select:focus {
   padding-left: 30px;
   padding-right: 30px;
   border: none;
-  font-size: 2.3vmin;
+  font-size: calc(0.4vmax + 0.8vw);
+}
+#input-todo > div > h2 {
+  margin-top: 1%;
+  padding-top: 0;
+  font-size: 32;
+}
+#priority {
+  width: 45%;
+  padding-left: 1.2vmax;
 }
 .formPop-btn {
   flex-direction: row;
@@ -254,7 +267,8 @@ select:focus {
   height: 14%;
   border-radius: 50px;
   border: none;
-  font-size: 2.3vmin;
+  font-size: 1.3vmax;
+  min-width: fit-content;
 }
 
 #cancelForm {
