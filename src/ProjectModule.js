@@ -12,19 +12,19 @@ class Project{
     }
 }
 
-
 var pSortStatus = "none"; 
 // {aa = alpha ascending}, {ad = alpha descending}, {na = numeric ascending}, {nd = numeric descending}, {none = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
 
-var projects = [];
-projects = JSON.parse(localStorage.getItem("projects" || []));
-if(projects == []){
+var projects = JSON.parse(localStorage.getItem("projects")) || [];
+if(projects == [] || projects == null){
     localStorage.setItem("newUser" ,"true");
 }
-if(projects.length == 0 && localStorage.getItem("newUser") == "true"){
+if( (projects.length == 0) && (localStorage.getItem("newUser") == "true") ){
     addSampleProject();
     localStorage.setItem("newUser", "false");
 }
+
+
 function getProjectByIndex(i) {
     if(i >= 0 && i < projects.length){
         return projects[i];
@@ -32,15 +32,15 @@ function getProjectByIndex(i) {
 }
 
 
-
 function addSampleProject(){
     let sampleProject = new Project("Sample Project 1", 0);
     projects.push(sampleProject);
-    addTaskToProject("Sample Task 1", "This is a short and sweet description for the task", "low", 0);
-    addTaskToProject("Sample Task 2", "This is a short and sweet description for the task", "medium", 0);
-    addTaskToProject("Sample Task 3", "Description is optional", "high", 0);
+    addTaskToProject("Sample Task 1", "This is a short and sweet description for the task", "low", new Date(), 0);
+    addTaskToProject("Sample Task 2", "This is a short and sweet description for the task", "medium", new Date(), 0);
+    addTaskToProject("Sample Task 3", "Description is optional", "high", new Date(), 0);
     projects.push(new Project("Pro2", projects.length));
     projects.push(new Project("Pro3", projects.length));
+    loadProject();
 }
 
 function getProjectsArray() {
@@ -158,13 +158,13 @@ function viewProject(project, i) {
 }
 
 
-function addTaskToProject(tName, tDesc, tPri, projI){
+function addTaskToProject(tName, tDesc, tPri, tDate, projI){
     // get the selected project
     let p = projects[projI];
     // get a empty index where the task will be added
     let tI = p.tasks.length;
     // create the task
-    let myTask = createNewTask(tName, tDesc, tPri, tI);
+    let myTask = createNewTask(tName, tDesc, tPri, tDate, tI);
     // push this task to the project's task list
     p.tasks.push(myTask);
     if(pSortStatus == "na" || pSortStatus == "nd"){
@@ -276,4 +276,4 @@ function pSortNumDes() {
     loadProject();
 }
 
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes, noProjectsYet};
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes, noProjectsYet, addSampleProject };

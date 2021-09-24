@@ -1,17 +1,19 @@
 import {checkProjectComplete, getProjectByIndex, getProjectsArray, viewProject } from "./ProjectModule";
+import { format, addWeeks, parseISO, parse, formatRelative } from "date-fns";
 class Todo{
-    constructor(task, description, priority, index){
+    constructor(task, description, priority, date, index){
         this.task = task;
         this.description = description;
         this.priority = priority;
+        this.date = date;
         // index of this task in project's task array
         this.index = index;
         this.done = false;
     }
 }
 
-function createNewTask(name, description, priority, index){
-    let tempTask = new Todo(name, description, priority, index);
+function createNewTask(name, description, priority, date, index){
+    let tempTask = new Todo(name, description, priority, date, index);
     return tempTask;
 }
 
@@ -52,8 +54,8 @@ function createTaskTable(t){
     let td2 = document.createElement("td");
     td1.classList.add("taskDesc");
     td2.classList.add("date");
-    td1.textContent = t.description;
-    td2.textContent = "1/2/abc";
+    td1.textContent = t.description || "No description provided";
+    td2.textContent = processTaskDate(t.date);
     taskDoneLoad(th1);
     trd.appendChild(td1);
     trd.appendChild(td2);
@@ -61,6 +63,16 @@ function createTaskTable(t){
     table.appendChild(trd);
 
     return table;
+}
+function processTaskDate(date){
+    if(date == ""){
+        return date = format(addWeeks(new Date(), 1), "do MMM, yyyy");
+    }else{
+        date = new Date(date);
+        date = format(date, "do MMM, yyyy");
+        return date;
+    }
+    // console.log(new Date(String(format(date, 'dd/MM/yyyy')).substring(0,2), String(format(date, 'dd/MM/yyyy')).substring(3,5),    String(format(date, 'dd/MM/yyyy')).substring(6,10)));
 }
 
 function taskDoneLoad(th1){

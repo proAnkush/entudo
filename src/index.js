@@ -1,4 +1,4 @@
-import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, noProjectsYet, pSortAlpDes, pSortNumAsc, pSortNumDes, getProjectByIndex, getProjectsArray } from "./ProjectModule";
+import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, noProjectsYet, pSortAlpDes, pSortNumAsc, pSortNumDes, getProjectByIndex, getProjectsArray, addSampleProject } from "./ProjectModule";
 
 // todo - clean the project 
 // todo - store projects in local storage
@@ -6,6 +6,7 @@ import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlp
 // todo - dates implementation
 
 // create project
+
 loadProject();
 document.getElementById("createProject").onclick = createProject;
 
@@ -36,14 +37,17 @@ function submitForm(){
     let taskNameInput = document.getElementById("taskNameInput");
     let taskDescInput = document.getElementById("taskDescInput");
     let taskPriorityInput = document.getElementById("priority");
+    let taskDateInput = document.getElementById("taskDate");
     // get value from those elements
     let tName = taskNameInput.value;
     let tDesc = taskDescInput.value;
     let tPri = taskPriorityInput.value;
+    let tDate = taskDateInput.value;
+
     let projI = this.getAttribute("data");
     // create a task with theses values
     if(isValidTaskName(tName, projI)){
-        addTaskToProject(tName, tDesc, tPri, projI);
+        addTaskToProject(tName, tDesc, tPri, tDate, projI);
         // reset input elements
         clearForms();
         // process the task and hide the form
@@ -58,10 +62,12 @@ function clearForms(){
     let taskNameInput = document.getElementById("taskNameInput");
     let taskDescInput = document.getElementById("taskDescInput");
     let taskPriorityInput = document.getElementById("priority");
+    let taskDateInput = document.getElementById("taskDate");
     
     taskDescInput.value = "";
     taskNameInput.value = "";
     taskPriorityInput.value = "low";
+    taskDateInput.value = "";
 }
 if(getProjectsArray().length == 0){
     noProjectsYet();
