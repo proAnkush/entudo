@@ -13,17 +13,21 @@ class Project{
 }
 
 var pSortStatus = "none"; 
+localStorage.setItem("newUser" ,"true");
 // {aa = alpha ascending}, {ad = alpha descending}, {na = numeric ascending}, {nd = numeric descending}, {none = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
 
-var projects = JSON.parse(localStorage.getItem("projects")) || [];
-if(projects == [] || projects == null){
-    localStorage.setItem("newUser" ,"true");
-}
-if( (projects.length == 0) && (localStorage.getItem("newUser") == "true") ){
-    addSampleProject();
-    localStorage.setItem("newUser", "false");
-}
 
+
+var projects = JSON.parse(localStorage.getItem("projects")) || [];
+function initiateProjects(){
+    if( (projects.length == 0) && (localStorage.getItem("newUser") == "true") ){
+        addSampleProject();
+        localStorage.setItem("newUser", "false");
+        if(localStorage.getItem("oldUser")){
+            projects = [];
+        }
+    }
+}
 
 function getProjectByIndex(i) {
     if(i >= 0 && i < projects.length){
@@ -67,6 +71,7 @@ function createProject(){
 function deleteProject(index){
     // duh, goodbye my project
     localStorage.setItem("projects", JSON.stringify(projects));
+    localStorage.setItem("oldUser", "true");
     projects.splice(index, 1);
     if(projects.length == 0){
         noProjectsYet();
@@ -276,4 +281,4 @@ function pSortNumDes() {
     loadProject();
 }
 
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes, noProjectsYet, addSampleProject };
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes, noProjectsYet, addSampleProject, initiateProjects };

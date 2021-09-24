@@ -1,4 +1,4 @@
-import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, noProjectsYet, pSortAlpDes, pSortNumAsc, pSortNumDes, getProjectByIndex, getProjectsArray, addSampleProject } from "./ProjectModule";
+import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, noProjectsYet, pSortAlpDes, pSortNumAsc, pSortNumDes, getProjectByIndex, getProjectsArray, addSampleProject, initiateProjects } from "./ProjectModule";
 
 // todo - clean the project 
 // todo - store projects in local storage
@@ -6,7 +6,7 @@ import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlp
 // todo - dates implementation
 
 // create project
-
+initiateProjects();
 loadProject();
 document.getElementById("createProject").onclick = createProject;
 
