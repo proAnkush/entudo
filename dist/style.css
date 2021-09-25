@@ -226,12 +226,12 @@ select:focus {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .formPop {
-  border-top: calc(1vmax + 0.8vw) solid #da22ff;
   width: 50%;
   min-width: fit-content;
   flex-direction: column;
   background-color: blanchedalmond;
-  height: 50%;
+  height: 55%;
+  overflow-y: auto;
   padding-bottom: 3%;
   min-width: 35%;
   max-height: fit-content;
@@ -246,8 +246,8 @@ select:focus {
   border-radius: 50px;
   padding-top: auto;
   padding-bottom: auto;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 2vmin;
+  padding-right: 2vmin;
   border: none;
   font-size: calc(0.4vmax + 0.8vw);
 }
@@ -255,6 +255,7 @@ select:focus {
   margin-top: 1%;
   padding-top: 0;
   font-size: 32;
+  width: 100%;
 }
 #priority {
   width: 45%;
@@ -383,5 +384,17 @@ th {
 
 .secondaryHeading:hover {
   transition-duration: 300ms;
+  transform: translateY(-3px);
+}
+.dateMods {
+  color: #da22ff;
+  transform: scale(1.2);
+}
+.dateMods:hover {
+  color: #000;
+  transform: scale(1.5);
+}
+th:hover {
+  transition-duration: 400ms;
   transform: translateY(-3px);
 }

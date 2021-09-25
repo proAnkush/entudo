@@ -16,8 +16,6 @@ var pSortStatus = "none";
 localStorage.setItem("newUser" ,"true");
 // {aa = alpha ascending}, {ad = alpha descending}, {na = numeric ascending}, {nd = numeric descending}, {none = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
 
-
-
 var projects = JSON.parse(localStorage.getItem("projects")) || [];
 function initiateProjects(){
     if( (projects.length == 0) && (localStorage.getItem("newUser") == "true") ){
@@ -35,13 +33,12 @@ function getProjectByIndex(i) {
     }
 }
 
-
 function addSampleProject(){
     let sampleProject = new Project("Sample Project 1", 0);
     projects.push(sampleProject);
-    addTaskToProject("Sample Task 1", "This is a short and sweet description for the task", "low", new Date(), 0);
-    addTaskToProject("Sample Task 2", "This is a short and sweet description for the task", "medium", new Date(), 0);
-    addTaskToProject("Sample Task 3", "Description is optional", "high", new Date(), 0);
+    addTaskToProject("Sample Task 1", "This is a short and sweet description for the task", "low", null, 0);
+    addTaskToProject("Sample Task 2", "No Date", "medium", null, 0);
+    addTaskToProject("Sample Task 3", "Description is optional", "high", null, 0);
     projects.push(new Project("Pro2", projects.length));
     projects.push(new Project("Pro3", projects.length));
     loadProject();
@@ -168,6 +165,7 @@ function addTaskToProject(tName, tDesc, tPri, tDate, projI){
     let p = projects[projI];
     // get a empty index where the task will be added
     let tI = p.tasks.length;
+    console.log(tDate);
     // create the task
     let myTask = createNewTask(tName, tDesc, tPri, tDate, tI);
     // push this task to the project's task list

@@ -1,5 +1,5 @@
 import {checkProjectComplete, getProjectByIndex, getProjectsArray, viewProject } from "./ProjectModule";
-import { format, addWeeks, parseISO, parse, formatRelative } from "date-fns";
+import { format, addWeeks, parseISO, parse, formatRelative, subDays, addDays } from "date-fns";
 class Todo{
     constructor(task, description, priority, date, index){
         this.task = task;
@@ -52,10 +52,14 @@ function createTaskTable(t){
     let trd = document.createElement("tr");
     let td1 = document.createElement("td");
     let td2 = document.createElement("td");
+    td2.setAttribute("data", t.index);
+
     td1.classList.add("taskDesc");
     td2.classList.add("date");
     td1.textContent = t.description || "No description provided";
-    td2.textContent = processTaskDate(t.date);
+    td2.appendChild(createDateCell(t));
+    
+    td2.setAttribute("id", t.index+"date");
     taskDoneLoad(th1);
     trd.appendChild(td1);
     trd.appendChild(td2);
@@ -64,15 +68,75 @@ function createTaskTable(t){
 
     return table;
 }
-function processTaskDate(date){
-    if(date == ""){
-        return date = format(addWeeks(new Date(), 1), "do MMM, yyyy");
+
+
+function createDateCell(t){
+    let outspan = document.createElement("span");
+    outspan.style.display = "flex";
+
+    // subtractors
+    // let ll = document.createElement("span");
+    // ll.innerHTML = `<i class="fa fa-angle-double-left" aria-hidden="true"></i>`
+    // ll.style.padding = "3px";
+    // outspan.appendChild(ll);
+
+    let l = document.createElement("span");
+    l.classList.add("dateMods");
+    l.innerHTML = `<i class="fa fa-angle-left" aria-hidden="true"></i>`
+    l.style.padding = "3px";
+    l.onclick = function(){
+        subtractDate(t);
+    }
+
+    outspan.appendChild(l);
+
+    // date
+    let dateSpan = document.createElement("span");
+    dateSpan.textContent = processTaskDate(t.date, t);
+    dateSpan.style.width = "fit-content";
+    dateSpan.style.margin = "0px auto";
+
+    outspan.appendChild(dateSpan);
+
+    // adders
+    let r = document.createElement("span");
+    r.classList.add("dateMods");
+    r.innerHTML = `<i class="fa fa-angle-right" aria-hidden="true"></i>`
+    r.style.padding = "3px";
+    r.onclick = function(){
+        addDate(t);
+    }
+
+    outspan.appendChild(r);
+
+    return outspan;
+}
+
+function processTaskDate(date, t){
+    localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
+    if(date == "" || date == null || date == undefined){
+        t.date = new Date(addWeeks(new Date(), 1));
+        return date = format(t.date, "do MMM, yyyy");
     }else{
-        date = new Date(date);
-        date = format(date, "do MMM, yyyy");
+        t.date = new Date(t.date)
+        date = format(new Date(date), "do MMM, yyyy") || format(parseISO(date), "do MMM, yyyy");
         return date;
     }
     // console.log(new Date(String(format(date, 'dd/MM/yyyy')).substring(0,2), String(format(date, 'dd/MM/yyyy')).substring(3,5),    String(format(date, 'dd/MM/yyyy')).substring(6,10)));
+}
+
+function subtractDate(t){
+    t.date = subDays(new Date(t.date), 1);
+    updateTaskDate(t);
+}
+function addDate(t){
+    t.date = addDays(new Date(t.date), 1);
+    updateTaskDate(t);
+}
+function updateTaskDate(t){
+    //upDate hehe
+    document.getElementById(t.index+"date").lastChild.remove();
+    document.getElementById(t.index+"date").appendChild(createDateCell(t));
 }
 
 function taskDoneLoad(th1){
