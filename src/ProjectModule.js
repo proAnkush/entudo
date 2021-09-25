@@ -34,13 +34,14 @@ function getProjectByIndex(i) {
 }
 
 function addSampleProject(){
-    let sampleProject = new Project("Sample Project 1", 0);
+    let sampleProject = new Project("Create a project", 0);
     projects.push(sampleProject);
-    addTaskToProject("Sample Task 1", "This is a short and sweet description for the task", "low", null, 0);
-    addTaskToProject("Sample Task 2", "No Date", "medium", null, 0);
-    addTaskToProject("Sample Task 3", "Description is optional", "high", null, 0);
-    projects.push(new Project("Pro2", projects.length));
-    projects.push(new Project("Pro3", projects.length));
+    addTaskToProject("Think of an idea", "A project that will be used by many people", "low", null, 0);
+    addTaskToProject("Decide environment", "What frameworks, libraries or what ecosystem it will be on.", "medium", null, 0);
+    addTaskToProject("Start Coding", "Description is optional", "high", null, 0);
+    addTaskToProject("Deploy it", "Rinse and repeat", "high", null, 0);
+    projects.push(new Project("Sample project 2", projects.length));
+    projects.push(new Project("Sample project 3", projects.length));
     loadProject();
 }
 
@@ -123,6 +124,7 @@ function createProjectCard(project, i){
 
     p1.onclick = function(){
         viewProject(project, project.index);
+
     };
     
     let tspan = document.createElement("span");
