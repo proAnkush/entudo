@@ -83,7 +83,7 @@ function createDateCell(t){
 
     let l = document.createElement("span");
     l.classList.add("dateMods");
-    l.innerHTML = `<i class="fa fa-angle-left" aria-hidden="true"></i>`
+    l.innerHTML = `<i class="fa fa-minus" aria-hidden="true"></i>`
     l.style.padding = "3px";
     l.onclick = function(){
         subtractDate(t);
@@ -102,7 +102,7 @@ function createDateCell(t){
     // adders
     let r = document.createElement("span");
     r.classList.add("dateMods");
-    r.innerHTML = `<i class="fa fa-angle-right" aria-hidden="true"></i>`
+    r.innerHTML = `<i class="fa fa-plus" style="color: #da22ff;" aria-hidden="true"></i>`
     r.style.padding = "3px";
     r.onclick = function(){
         addDate(t);

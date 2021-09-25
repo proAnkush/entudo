@@ -1,4 +1,4 @@
-import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, noProjectsYet, pSortAlpDes, pSortNumAsc, pSortNumDes, getProjectByIndex, getProjectsArray, addSampleProject, initiateProjects } from "./ProjectModule";
+import { loadProject, createProject, addTaskToProject, isValidTaskName, pSortAlpAsc, noProjectsYet, pSortAlpDes, pSortNumAsc, pSortNumDes, getProjectByIndex, getProjectsArray, addSampleProject, initiateProjects, todayTomTasks } from "./ProjectModule";
 
 // todo - clean the project 
 // todo - store projects in local storage
@@ -21,7 +21,13 @@ document.getElementById("p-sort-alpha-up").onclick = pSortAlpDes;
 document.getElementById("p-sort-num-down").onclick = pSortNumAsc;
 document.getElementById("p-sort-num-up").onclick = pSortNumDes;
 
-
+// today and tomorrow task groups
+document.getElementById("todayTasks").onclick = function(){
+    todayTomTasks("today");
+};
+document.getElementById("tomorTasks").onclick = function(){
+    todayTomTasks("tom");
+};
 
 // show form
 function showTaskForm() {

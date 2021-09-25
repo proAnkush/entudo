@@ -1,5 +1,5 @@
-import { createNewTask, loadTasks } from "./TaskModule";
-import { format, compareAsc } from 'date-fns'
+import { createNewTask, loadTasks, createTaskTable } from "./TaskModule";
+import { format, compareAsc, isToday, parseISO, isTomorrow } from 'date-fns'
 
 class Project{
     constructor(project, index){
@@ -136,7 +136,7 @@ function createProjectCard(project, i){
     ticon.classList.add("fa-trash-alt");
     tspan.appendChild(ticon);
     p1.appendChild(tspan);
-
+    document.getElementById("showTaskForm").style.visibility = "visible";
     return p1;
 }
 function viewProject(project, i) {
@@ -156,7 +156,7 @@ function viewProject(project, i) {
         projSecHead.setAttribute("data", i)
         loadTasks(project);
     }
-    
+    document.getElementById("showTaskForm").style.visibility = "visible";
 }
 
 
@@ -168,6 +168,7 @@ function addTaskToProject(tName, tDesc, tPri, tDate, projI){
     console.log(tDate);
     // create the task
     let myTask = createNewTask(tName, tDesc, tPri, tDate, tI);
+    tDate = new Date(tDate);
     // push this task to the project's task list
     p.tasks.push(myTask);
     if(pSortStatus == "na" || pSortStatus == "nd"){
@@ -279,4 +280,69 @@ function pSortNumDes() {
     loadProject();
 }
 
-export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes, noProjectsYet, addSampleProject, initiateProjects };
+function todayTomTasks(day){
+    let projects = getProjectsArray();
+    document.getElementById("showTaskForm").style.visibility = "hidden";
+    document.getElementById("selectedProjectName").textContent = "Tasks due today";
+    let taskCard = document.getElementById("taskSection");
+    taskCard.innerHTML = "";
+    let outerTable = document.createElement("table");
+    let tr1 = document.createElement("tr");
+    let th1 = document.createElement("th");
+    th1.textContent = "Task Name";
+    let th2 = document.createElement("th");
+    th2.textContent = "Task Description";
+    tr1.appendChild(th1);
+    tr1.appendChild(th2);
+    outerTable.appendChild(tr1);
+    outerTable.setAttribute("id", "votaskTable");
+    console.log(day == "today");
+    for(let project of projects){
+        for(let task of project.tasks){
+            if(day == ("today")){
+                if(isToday(new Date(task.date))){
+                    let taskRow = createViewOnlyTask(task, project.projectName);
+                    outerTable.appendChild(taskRow);
+                }
+            }
+            else if(day = "tom"){
+                if(isTomorrow(new Date(task.date))){
+                    let taskRow = createViewOnlyTask(task, project.projectName);
+                    outerTable.appendChild(taskRow);
+                }
+            }
+        }
+    }
+    if(day == "tom"){
+    document.getElementById("selectedProjectName").textContent = "Task due tomorrow";
+
+    }
+    taskCard.appendChild(outerTable)
+
+}
+function createViewOnlyTask(t, n){
+    // dom only
+    let tr = document.createElement("tr");
+    tr.classList.add(t.priority);
+    let td1 = document.createElement("td");
+    let td2 = document.createElement('td');
+    td1.style.fontWeight = "bold"
+    td1.style.fontSize = "30px";
+    td1.style.fontWeight = "bold"
+    
+    td1.classList.add("tdvoTask");
+    td2.classList.add("tdvoTask");
+    let nt = document.createElement("span");
+    nt.textContent = n;
+    nt.style.fontSize = ".7em";
+    nt.style.color = "#da22ff"
+    td1.innerHTML = t.task;
+    td1.appendChild(document.createElement("br"));
+    td1.appendChild(nt);
+    td2.textContent = t.description || "No description provided";
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    return tr;
+}
+
+export {createProject, createProjectCard, getProjectsArray, loadProject, deleteProject, addTaskToProject, getProjectByIndex, viewProject, loadTasks, checkProjectComplete, isValidTaskName, pSortAlpAsc, pSortAlpDes, pSortNumAsc, pSortNumDes, noProjectsYet, addSampleProject, initiateProjects, todayTomTasks };
