@@ -28,6 +28,7 @@ function createTaskTable(t){
     th2.setAttribute("data", t.index);
     th1.classList.add("taskName");
     th2.classList.add("taskPriority");
+    th2.style.textAlign = "center";
     
     
     th1.innerHTML = t.task + `<i class="far fa-calendar-times"></i>`;
@@ -238,6 +239,11 @@ function loadTasks(project){
         for(let t of project.tasks){
             let taskTable = createTaskTable(t);
             taskCard.appendChild(taskTable);
+        }
+        if(checkProjectComplete()){
+            if(document.getElementById("taskSection").lastChild.getAttribute("id") != "complete"){
+                document.getElementById("taskSection").appendChild(everyTaskCompleteDiv());
+            }
         }
     }
     localStorage.setItem("projects", JSON.stringify(getProjectsArray()));
