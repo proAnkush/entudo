@@ -21,11 +21,13 @@ h1 {
   text-align: right;
   margin-top: 0;
   padding-right: 30px;
-  color: brown;
+  color: white;
   font-size: 5vmin;
   font-family: "PT Serif Caption";
-  text-shadow: 1px 1px 1px white;
   margin-bottom: 0;
+  background: -webkit-linear-gradient(rgb(211, 191, 191), white, aquamarine);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .subheading {
   text-align: right;
@@ -35,6 +37,7 @@ h1 {
   margin-top: 0;
 }
 body {
+  /* background-color: blanchedalmond; */
   background-color: blanchedalmond;
   font-family: Rambla;
   font-size: 2.2vmin;
@@ -103,33 +106,38 @@ body {
   flex-direction: column;
 }
 .inputText {
-  margin-top: 30px;
-  margin-bottom: 10px;
   font-size: 2vmin;
-  padding: 20px 20px;
+  padding: 2vmin;
   background-color: transparent;
   color: black;
   width: 80%;
+  height: 100%;
   border: none;
-  border-radius: 30px;
-  box-shadow: 0px 0px 3px blue;
+  background-color: white;
+  border-radius: 50px 0px 0px 50px;
+  border: transparent;
 }
 .inputText::placeholder {
   color: black;
 }
+#input-project {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  border: 2px solid black;
+  border-radius: 50px;
+  background-color: red;
+  margin-top: 10%;
+}
 .submits {
   background-color: transparent;
-  border: none;
-  font-size: 2.5vmin;
-  padding: 6px;
+  font-size: 2.3vmin;
   cursor: pointer;
-  width: 90%;
-  padding: 8px;
-  margin: 0 auto;
-  border-radius: 10px;
   background-color: red;
   color: white;
-  border: 3px solid white;
+  border-radius: 0px 50px 50px 0px;
+  border: transparent;
+  padding: 1.8vmin;
 }
 
 .trash {
@@ -190,11 +198,6 @@ body {
   text-decoration: none;
 }
 
-.fa-plus {
-  float: right;
-  color: gold;
-  font-size: 2.4vmin;
-}
 .fa-trash-alt {
   float: right;
 }
@@ -394,7 +397,7 @@ th:hover {
 #groupTasks {
   display: flex;
   flex-direction: column;
-  margin-bottom: 8%;
+  margin-bottom: 10%;
 }
 
 .groupBtn {
