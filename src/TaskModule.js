@@ -123,7 +123,6 @@ function processTaskDate(date, t){
         date = format(new Date(date), "do MMM, yyyy") || format(parseISO(date), "do MMM, yyyy");
         return date;
     }
-    // console.log(new Date(String(format(date, 'dd/MM/yyyy')).substring(0,2), String(format(date, 'dd/MM/yyyy')).substring(3,5),    String(format(date, 'dd/MM/yyyy')).substring(6,10)));
 }
 
 function subtractDate(t){

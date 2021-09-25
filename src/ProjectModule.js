@@ -167,7 +167,6 @@ function addTaskToProject(tName, tDesc, tPri, tDate, projI){
     let p = projects[projI];
     // get a empty index where the task will be added
     let tI = p.tasks.length;
-    console.log(tDate);
     // create the task
     let myTask = createNewTask(tName, tDesc, tPri, tDate, tI);
     tDate = new Date(tDate);
@@ -217,8 +216,6 @@ function sortProByCode(code){
     }else if(code == "nd"){
         pSortStatus = "none";
         pSortNumDes();
-    }else{
-        console.log("Unexpected code received");
     }
     localStorage.setItem("projects", JSON.stringify(projects));
 
@@ -298,7 +295,6 @@ function todayTomTasks(day){
     tr1.appendChild(th2);
     outerTable.appendChild(tr1);
     outerTable.setAttribute("id", "votaskTable");
-    console.log(day == "today");
     for(let project of projects){
         for(let task of project.tasks){
             if(day == ("today")){
