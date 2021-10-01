@@ -37,7 +37,7 @@ function createTaskTable(t) {
   th2.classList.add('taskPriority');
   th2.style.textAlign = 'center';
 
-  th1.innerHTML = `${t.task}<i class="far fa-calendar-times"></i>`;
+  th1.innerHTML = `${t.task}<i class="far fa-calendar-times" title="Delete this task"></i>`;
   const deleteTaskIcon = th1.lastChild;
   deleteTaskIcon.setAttribute('data', t.index);
   deleteTaskIcon.addEventListener('click', () => {
@@ -88,7 +88,7 @@ function createDateCell(t) {
 
   const l = document.createElement('span');
   l.classList.add('dateMods');
-  l.innerHTML = '<i class="fa fa-minus"  aria-hidden="true"></i>';
+  l.innerHTML = '<i class="fa fa-minus" title="Decrease due date by 1 day." aria-hidden="true"></i>';
   l.style.padding = '3px';
   l.onclick = function () {
     subtractDate(t);
@@ -107,7 +107,7 @@ function createDateCell(t) {
   // adders
   const r = document.createElement('span');
   r.classList.add('dateMods');
-  r.innerHTML = '<i class="fa fa-plus" aria-hidden="true"></i>';
+  r.innerHTML = '<i class="fa fa-plus" title="Increase due date by 1 day." aria-hidden="true"></i>';
   r.style.padding = '8px';
   r.onclick = function () {
     addDate(t);

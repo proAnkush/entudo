@@ -68,7 +68,7 @@ function getProjectsArray() {
 }
 
 function createProject() {
-  // creates a project, stores it in the projects array, and load's it to the side pane. pretty efficients
+  // creates a project, stores it in the projects array, and loads it to the side pane.
   const projects = getProjectsArray();
   localStorage.setItem('newUser', 'false');
   const projectNameInput = document.getElementById('formProjectName');
@@ -151,6 +151,7 @@ function createProjectCard(project, i) {
   const ticon = document.createElement('i');
   ticon.classList.add('far');
   ticon.classList.add('fa-trash-alt');
+  ticon.setAttribute('title', 'Delete this project, with all its tasks.');
   tspan.appendChild(ticon);
   p1.appendChild(tspan);
   document.getElementById('showTaskForm').style.visibility = 'visible';
