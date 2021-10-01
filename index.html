@@ -24,24 +24,27 @@
             <h2 class="secondaryHeading">Your Projects</h3>
             <div id="proj-sort-btn-crowd">
                 <!-- a to z -->
-                <button class="sortBtn" id="p-sort-alpha-down" name="sort alphabetically"><i class="fas fa-sort-alpha-down"></i></button>
+                <button class="sortBtn" id="p-sort-alpha-down" name="sort alphabetically" title="Sort projects from A-Z"><i class="fas fa-sort-alpha-down"></i></button>
                 <!-- z to a -->
-                <button class="sortBtn" id="p-sort-alpha-up" name="reverse alphabetic sort"><i class="fas fa-sort-alpha-up"></i></i></button>
+                <button class="sortBtn" id="p-sort-alpha-up" name="reverse alphabetic sort" title="Sort projects from Z-A"><i class="fas fa-sort-alpha-up"></i></i></button>
                 <!-- least number of tasks first -->
-                <button class="sortBtn" id="p-sort-num-down" name="number ascending sort"><i class="fas fa-sort-numeric-down"></i></button>
+                <button class="sortBtn" id="p-sort-num-down" name="number ascending sort"><i class="fas fa-sort-numeric-down" title="Sort projects on decreasing number of tasks"></i></button>
                 <!-- most number of tasks first -->
-                <button class="sortBtn" id="p-sort-num-up" name="number descending sort"><i class="fas fa-sort-numeric-up"></i></button>
+                <button class="sortBtn" id="p-sort-num-up" name="number descending sort" title="Sort projects on increasing number of tasks"><i class="fas fa-sort-numeric-up"></i></button>
             </div>
+            <hr>
             <div id="groupTasks">
-                <button id="todayTasks" class="groupBtn" name="today">Today</button>
-                <button id="tomorTasks" class="groupBtn" name="tomorrow">Tomorrow</button>
-                
+                <button id="todayTasks" class="groupBtn" name="today" title="Tasks due today">Today</button>
+                <button id="tomorTasks" class="groupBtn" name="tomorrow" title="Tasks due tomorrow">Tomorrow</button>
             </div>
-            <div id="projects">
+            <hr>
+            <div id="projects" title="Projects list">
                 <!-- projects will be added here -->
             </div>
-            <div id="input-project">
+            <hr>
+            <div id="input-project" title="Create and add a project">
                 <!-- create new project input area -->
+                
                     <input id="formProjectName" class="inputText" name="project-name" type="text" placeholder="Add a new project">
                     <button id="createProject" class="submits" name="Create_project"> <i class="fas fa-plus-circle"></i></button>
             </div>
